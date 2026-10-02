@@ -1,0 +1,8 @@
+
+mypythonenv/
+__pycache__/
+*.pyc
+db.sqlite3
+basic.py
+PotaoProject.zip
+.env

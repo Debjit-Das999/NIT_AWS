@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex Morgan | Creative Developer Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=theme" rel="stylesheet">
+
+    <style>
+        /* --- Reset & Global Variables --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        :root {
+            --bg-color: #090d16;
+            --card-bg: #131a2c;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-cyan: #06b6d4;
+            --accent-purple: #a855f7;
+            --border-color: #1e293b;
+            --max-width: 1100px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* --- Global Buttons --- */
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.75rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            color: #ffffff;
+            box-shadow: 0 4px 20px rgba(6, 182, 212, 0.25);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(6, 182, 212, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--text-muted);
+        }
+
+        /* --- Navigation --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(9, 13, 22, 0.75);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(30, 41, 59, 0.5);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .logo span {
+            color: var(--accent-cyan);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-cyan);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            padding: 180px 0 100px;
+            background: radial-gradient(circle at 90% 10%, rgba(6, 182, 212, 0.1), transparent 40%),
+                        radial-gradient(circle at 10% 90%, rgba(168, 85, 247, 0.08), transparent 40%);
+        }
+
+        .hero-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero-tag {
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            color: var(--accent-cyan);
+            padding: 0.35rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -1.5px;
+            margin-bottom: 1.5rem;
+            max-width: 800px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(to right, var(--accent-cyan), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+        }
+
+        /* --- Section Configurations --- */
+        .section {
+            padding: 100px 0;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .section-title {
+            margin-bottom: 3.5rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        /* --- Projects Grid --- */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(6, 182, 212, 0.3);
+        }
+
+        .project-thumb {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            position: relative;
+        }
+
+        /* Visual placeholder styling representing code/design dynamic mockups */
+        .project-thumb::after {
+            content: '</>';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: rgba(255, 255, 255, 0.05);
+            font-size: 4rem;
+            font-weight: 700;
+        }
+
+        .project-card:nth-child(2) .project-thumb { background: linear-gradient(135deg, #2e1065, #0f172a); }
+        .project-card:nth-child(2) .project-thumb::after { content: '✨'; font-size: 3rem; }
+
+        .project-card:nth-child(3) .project-thumb { background: linear-gradient(135deg, #064e3b, #0f172a); }
+        .project-card:nth-child(3) .project-thumb::after { content: '⛃'; font-size: 3rem; }
+
+        .project-body {
+            padding: 1.75rem;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .project-tags span {
+            font-size: 0.75rem;
+            color: var(--accent-cyan);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .project-body h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .project-body p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-link {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: color 0.2s;
+        }
+
+        .project-link:hover {
+            color: var(--accent-cyan);
+        }
+
+        /* --- Contact Form --- */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4rem;
+        }
+
+        .contact-info p {
+            color: var(--text-muted);
+            margin: 1rem 0 2.5rem;
+        }
+
+        .contact-method {
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-method h4 {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-method a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .contact-form {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 2.5rem;
+            border-radius: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input, 
+        .form-group textarea {
+            width: 100%;
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            padding: 0.85rem 1rem;
+            border-radius: 8px;
+            color: #fff;
+            outline: none;
+            font-size: 0.95rem;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus, 
+        .form-group textarea:focus {
+            border-color: var(--accent-cyan);
+        }
+
+        /* --- Footer --- */
+        footer {
+            padding: 3rem 0;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* --- Responsive Styles --- */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 2.5rem; }
+            .contact-container { grid-template-columns: 1fr; gap: 3rem; }
+            .hero-cta { flex-direction: column; width: 100%; max-width: 300px; }
+            .btn { text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo">portfolio<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="#work">Work</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <a href="#contact" class="btn btn-secondary" style="padding: 0.5rem 1.25rem; font-size: 0.85rem;">Let's Talk</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-container">
+            <span class="hero-tag">Available for Freelance Work</span>
+            <h1>Designing digital spaces that balance <span>art and code.</span></h1>
+            <p>Hi, I'm Alex. A full-stack creative developer specializing in robust front-end architectures and intentional user interfaces.</p>
+            <div class="hero-cta">
+                <a href="#work" class="btn btn-primary">See My Work</a>
+                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="work" class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Selected Work</h2>
+                <p>A handpicked showcase of architectures and interfaces I've brought to life.</p>
+            </div>
+
+            <div class="project-grid">
+                <div class="project-card">
+                    <div class="project-thumb"></div>
+                    <div class="project-body">
+                        <div class="project-tags">
+                            <span>Development</span> • <span>Next.js</span>
+                        </div>
+                        <h3>Nova CRM Platform</h3>
+                        <p>A fast customer relationship system featuring complex dashboarding pipelines and global caching integrations.</p>
+                        <a href="#" class="project-link">View Case Study →</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-thumb"></div>
+                    <div class="project-body">
+                        <div class="project-tags">
+                            <span>UI Design</span> • <span>Figma</span>
+                        </div>
+                        <h3>Aether Mobile App</h3>
+                        <p>An intuitive interface layout ecosystem designed for a decentralised cryptographic asset management application.</p>
+                        <a href="#" class="project-link">View Case Study →</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-thumb"></div>
+                    <div class="project-body">
+                        <div class="project-tags">
+                            <span>Full-Stack</span> • <span>Node.js</span>
+                        </div>
+                        <h3>Apex Engine API</h3>
+                        <p>A high-throughput server application powering real-time asset syncing mechanics across dynamic inventory sets.</p>
+                        <a href="#" class="project-link">View Case Study →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <div class="container contact-container">
+            <div class="contact-info">
+                <div class="section-title" style="margin-bottom: 1.5rem;">
+                    <h2>Let's build something brilliant together.</h2>
+                </div>
+                <p>Have an idea or an open role you'd like to collaborate on? Drop a message, and let's coordinate details.</p>
+                
+                <div class="contact-method">
+                    <h4>Direct Email</h4>
+                    <a href="mailto:alex@example.com">alex@example.com</a>
+                </div>
+                <div class="contact-method">
+                    <h4>Social Profiles</h4>
+                    <a href="#" style="font-size: 0.95rem; color: var(--accent-cyan);">GitHub</a> &nbsp;•&nbsp; 
+                    <a href="#" style="font-size: 0.95rem; color: var(--accent-cyan);">LinkedIn</a>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <form action="#" method="POST">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" required placeholder="Jane Doe">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" required placeholder="jane@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" rows="5" required placeholder="Tell me about your project..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; border: none; border-radius: 8px;">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Alex Morgan. Built from scratch using modern layouts.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
